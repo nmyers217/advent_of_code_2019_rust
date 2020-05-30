@@ -9,7 +9,7 @@ struct Intcode {
 impl Intcode {
     fn new(memory: Vec<u32>) -> Intcode {
         Intcode {
-            memory: memory,
+            memory,
             ip: 0,
             done: false,
         }
@@ -56,7 +56,8 @@ impl Intcode {
 
 pub fn solve() {
     let filename = "res/day_02.txt";
-    let input = fs::read_to_string(filename).expect(&format!("Could not read file: {}", filename));
+    let input = fs::read_to_string(filename)
+        .unwrap_or_else(|_| panic!("Could not read file: {}", filename));
     let memory: Vec<u32> = input
         .trim()
         .split(',')
@@ -68,7 +69,7 @@ pub fn solve() {
     ic.run_program().expect("Coult not run intcode program.");
     println!("{}", ic.memory[0]);
 
-    let target = 19690720;
+    let target = 19_690_720;
     for noun in 0..=99 {
         for verb in 0..=99 {
             ic = Intcode::new(memory.clone());

@@ -12,7 +12,7 @@ pub fn solve() {
 
 fn get_input() -> Vec<String> {
     let filename = "res/day_03.txt";
-    let file = File::open(filename).expect(&format!("Could not open file: {}", filename));
+    let file = File::open(filename).unwrap_or_else(|_| panic!("Could not open file: {}", filename));
     let reader = BufReader::new(file);
     let mut result = Vec::new();
     for line in reader.lines() {
@@ -47,9 +47,7 @@ fn trace_wires(input: Vec<String>) -> (i32, i32) {
                 location = (location.0 + dx, location.1 + dy);
                 points.insert(location);
                 step += 1;
-                if !steps.contains_key(&location) {
-                    steps.insert(location, step);
-                }
+                steps.entry(location).or_insert(step);
             }
         }
 
