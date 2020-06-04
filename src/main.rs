@@ -8,6 +8,8 @@ mod day_03;
 mod day_04;
 mod day_05;
 mod day_06;
+mod day_07;
+mod intcode;
 
 fn main() {
     println!("{}", "Day 01".green().bold().underline());
@@ -32,5 +34,9 @@ fn main() {
 
     println!("{}", "Day 06".green().bold().underline());
     day_06::solve();
+    println!();
+
+    println!("{}", "Day 07".green().bold().underline());
+    day_07::solve();
     println!();
 }
