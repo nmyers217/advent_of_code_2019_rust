@@ -11,32 +11,20 @@ mod day_06;
 mod day_07;
 mod intcode;
 
+macro_rules! solve {
+    ($title: literal, $module:tt) => {
+        println!("{}", $title.green().bold().underline());
+        $module::solve();
+        println!();
+    };
+}
+
 fn main() {
-    println!("{}", "Day 01".green().bold().underline());
-    day_01::solve();
-    println!();
-
-    println!("{}", "Day 02".green().bold().underline());
-    day_02::solve();
-    println!();
-
-    println!("{}", "Day 03".green().bold().underline());
-    day_03::solve();
-    println!();
-
-    println!("{}", "Day 04".green().bold().underline());
-    day_04::solve();
-    println!();
-
-    println!("{}", "Day 05".green().bold().underline());
-    day_05::solve();
-    println!();
-
-    println!("{}", "Day 06".green().bold().underline());
-    day_06::solve();
-    println!();
-
-    println!("{}", "Day 07".green().bold().underline());
-    day_07::solve();
-    println!();
+    solve!("Day 01", day_01);
+    solve!("Day 02", day_02);
+    solve!("Day 03", day_03);
+    solve!("Day 04", day_04);
+    solve!("Day 05", day_05);
+    solve!("Day 06", day_06);
+    solve!("Day 07", day_07);
 }
