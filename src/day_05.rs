@@ -5,13 +5,13 @@ pub fn solve() {
     let filename = "res/day_05.txt";
     let input = fs::read_to_string(filename)
         .unwrap_or_else(|_| panic!("Could not read file: {}", filename));
-    let memory: Vec<i32> = input
+    let memory: Vec<i64> = input
         .trim()
         .split(',')
         .map(|s| s.parse().unwrap())
         .collect();
 
-    let mut ic = Intcode::new(memory.clone());
+    let mut ic = Intcode::new(memory.clone(), false);
     ic.queue_input(1);
     ic.progress_program()
         .unwrap_or_else(|_| panic!("Could not progress program!"));
@@ -21,7 +21,7 @@ pub fn solve() {
         }
     }
 
-    ic = Intcode::new(memory);
+    ic = Intcode::new(memory, false);
     ic.queue_input(5);
     ic.progress_program()
         .unwrap_or_else(|_| panic!("Could not progress program!"));

@@ -10,6 +10,7 @@ mod day_05;
 mod day_06;
 mod day_07;
 mod day_08;
+mod day_09;
 mod intcode;
 
 macro_rules! solve {
@@ -29,4 +30,5 @@ fn main() {
     solve!("Day 06", day_06);
     solve!("Day 07", day_07);
     solve!("Day 08", day_08);
+    solve!("Day 09", day_09);
 }

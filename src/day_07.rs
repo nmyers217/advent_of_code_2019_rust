@@ -7,7 +7,7 @@ pub fn solve() {
     let input = fs::read_to_string(filename)
         .unwrap_or_else(|_| panic!("Could not read file: {}", filename));
 
-    let memory: Vec<i32> = input
+    let memory: Vec<i64> = input
         .trim()
         .split(',')
         .map(|s| s.parse().unwrap())
@@ -63,18 +63,18 @@ fn permutations(digits: std::ops::Range<u8>) -> HashSet<Vec<u8>> {
     result
 }
 
-fn run_amplifier_controller(phases: Vec<u8>, memory: &[i32]) -> i32 {
+fn run_amplifier_controller(phases: Vec<u8>, memory: &[i64]) -> i64 {
     let mut intcodes: VecDeque<Intcode> = VecDeque::new();
     for (i, phase_setting) in phases.iter().enumerate() {
-        let mut ic = Intcode::new(memory.to_vec());
-        ic.queue_input(*phase_setting as i32);
+        let mut ic = Intcode::new(memory.to_vec(), false);
+        ic.queue_input(*phase_setting as i64);
         if i == 0 {
             ic.queue_input(0);
         }
         intcodes.push_back(ic.clone());
     }
 
-    let mut last_outputs: VecDeque<i32> = VecDeque::new();
+    let mut last_outputs: VecDeque<i64> = VecDeque::new();
     'feedback: loop {
         for (i, ic) in intcodes.iter_mut().enumerate() {
             while let Some(n) = last_outputs.pop_front() {
@@ -115,7 +115,7 @@ fn can_get_permutations() {
 
 #[test]
 fn can_run_amplifier_controller() {
-    let mut memory: Vec<i32> = vec![
+    let mut memory: Vec<i64> = vec![
         3, 15, 3, 16, 1002, 16, 10, 16, 1, 16, 15, 15, 4, 15, 99, 0, 0,
     ];
     let result = run_amplifier_controller(vec![4, 3, 2, 1, 0], &memory);
@@ -138,7 +138,7 @@ fn can_run_amplifier_controller() {
 
 #[test]
 fn can_run_amplifier_controller_in_feedback_loob() {
-    let mut memory: Vec<i32> = vec![
+    let mut memory: Vec<i64> = vec![
         3, 26, 1001, 26, -4, 26, 3, 27, 1002, 27, 2, 27, 1, 27, 26, 27, 4, 27, 1001, 28, -1, 28,
         1005, 28, 6, 99, 0, 0, 5,
     ];
