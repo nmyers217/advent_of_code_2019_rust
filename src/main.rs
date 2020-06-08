@@ -12,6 +12,7 @@ mod day_07;
 mod day_08;
 mod day_09;
 mod intcode;
+mod linear_algebra;
 
 macro_rules! solve {
     ($title: literal, $module:tt) => {

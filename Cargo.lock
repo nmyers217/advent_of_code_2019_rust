@@ -5,6 +5,7 @@ name = "aoc2019-rust"
 version = "0.1.0"
 dependencies = [
  "colored",
+ "overload",
 ]
 
 [[package]]
@@ -49,6 +50,12 @@ name = "libc"
 version = "0.2.71"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9457b06509d27052635f90d6466700c65095fdf75409b3fbdd903e988b886f49"
+
+[[package]]
+name = "overload"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b15813163c1d831bf4a13c3610c05c0d03b39feb07f7e09fa234dac9b15aaf39"
 
 [[package]]
 name = "winapi"
